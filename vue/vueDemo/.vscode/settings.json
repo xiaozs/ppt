@@ -1,0 +1,10 @@
+{
+    "vetur.format.defaultFormatterOptions": {
+        "prettyhtml": {
+            "printWidth": 100
+        }
+    },
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "vetur.format.options.tabSize": 4,
+    "editor.tabSize": 4
+}
