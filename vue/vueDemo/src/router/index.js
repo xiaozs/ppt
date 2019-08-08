@@ -1,24 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Name from '@/components/Name'
-import IfElse from '@/components/IfElse'
-import For from '@/components/For'
+import EventBusDemo from '@/components/EventBusDemo'
+import VuexDemo from '@/components/VuexDemo'
+
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/name',
-      component: Name
+      path: "/EventBusDemo",
+      component: EventBusDemo
     },
     {
-      path: '/ifelse',
-      component: IfElse
+      path: "/VuexDemo",
+      component: VuexDemo
     },
-    {
-      path: '/for',
-      component: For
-    }
   ]
 })
