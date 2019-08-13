@@ -10,6 +10,7 @@
 </template>
 <script>
 import dataSource from "@/utils/dataSource";
+import "@/utils/await"
 
 function getProvinces() {
     return new Promise(resolve => {

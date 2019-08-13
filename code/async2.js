@@ -66,7 +66,6 @@ function callback(err, result) {
     //正常流程
 }
 
-//如果是jquery那种的，那么这个函数就适合使用了。
 
 
 
@@ -102,26 +101,26 @@ var promisify = require("utils").promisify;
 
 // promisify函数已经准备好了，现在我们来改写之前的那个例子
 
-// function getData(count) {
-//     get(`/sampleget?count=${count}`, data => {
-//         console.log(data);
-//     });
-// }
+function getData(count) {
+    get(`/sampleget?count=${count}`, data => {
+        console.log(data);
+    });
+}
 
-// function queryDB(kw) {
-//     db.find(`select * from sample where kw = ${kw}`, (err, res) => {
-//         getData(res.length);
-//     });
-// }
+function queryDB(kw) {
+    db.find(`select * from sample where kw = ${kw}`, (err, res) => {
+        getData(res.length);
+    });
+}
 
-// function readFile(filepath) {
-//     fs.readFile(filepath, 'utf-8', (err, content) => {
-//         let keyword = content.substring(0, 5);
-//         queryDB(keyword);
-//     });
-// }
+function readFile(filepath) {
+    fs.readFile(filepath, 'utf-8', (err, content) => {
+        let keyword = content.substring(0, 5);
+        queryDB(keyword);
+    });
+}
 
-// readFile('./sample.txt');
+readFile('./sample.txt');
 
 
 

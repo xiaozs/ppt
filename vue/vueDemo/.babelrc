@@ -4,15 +4,30 @@
       "modules": false,
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-      }
+      },
+      "exclude": ["transform-regenerator","transform-async-to-generator"]
     }],
-    "stage-2"
+    // "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime"],
+  "plugins": [
+      "transform-vue-jsx", 
+      "transform-runtime",
+
+      "syntax-dynamic-import",
+      "transform-class-properties",
+      "transform-decorators",
+      "transform-object-rest-spread",
+      "transform-async-generator-functions"
+  ],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
       "plugins": ["transform-vue-jsx", "istanbul"]
+    },
+    "production":{
+        "presets":[
+            ["env", { "include": ["transform-regenerator","transform-async-to-generator", ] }]
+        ]
     }
   }
 }

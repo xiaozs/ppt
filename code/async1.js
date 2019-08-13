@@ -1,11 +1,29 @@
-function fn1(cb) {
-    let isAsync = true;
-    if (isAsync) {
+function fn1(data, cb) {
+    if (data) {
         setTimeout(cb);
     } else {
         cb();
     }
 }
 
-fn1(() => console.log("fn1 runned"));
-console.log("-------");
+
+console.log("before");
+fn1({}, () => console.log("call"));
+console.log("after");
+
+/**
+ * before
+ * after
+ * call
+ */
+
+
+console.log("before");
+fn1(null, () => console.log("call"));
+console.log("after");
+
+/**
+ * before
+ * call
+ * after
+ */
