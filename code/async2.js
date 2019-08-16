@@ -1,9 +1,8 @@
 //就好像使用co.js的函数要被thunk化一样
 //将原有的使用回调的异步函数改为使用promise时
 //也需要将其promise化
-function promisify(fn) {
-    return function () {
-        var args = [].slice.call(arguments);
+function promisify(fn, context = null) {
+    return function (...args) {
         return new Promise((resolve, reject) => {
             args.push(function (err, result) {
                 if (err) {
@@ -12,7 +11,7 @@ function promisify(fn) {
                     resolve(result);
                 }
             })
-            fn.apply(context || null, args);
+            fn.apply(context, args);
         })
     }
 }
@@ -38,14 +37,6 @@ function promisify(fn) {
 
 
 
-
-
-
-
-//那是不是每次使用promise都要复制一下这个函数呢？
-//看情况
-//这个函数只适合那些符合node式回调的异步函数使用
-//什么是node式回调呢？
 
 function asyncFn(arg1, arg2, cb) {//条件一：回调放在参数列表的最后
     //条件二：特殊的回调调用规则
@@ -99,7 +90,7 @@ var promisify = require("utils").promisify;
 
 
 
-// promisify函数已经准备好了，现在我们来改写之前的那个例子
+// 以函数分解里面的例子为例
 
 function getData(count) {
     get(`/sampleget?count=${count}`, data => {
@@ -226,7 +217,7 @@ try {
 
 
 
-
+                                                    // try {
 readFile('./sample.txt')
     .then(content => {                              // var content = readFile('./sample.txt');
         let keyword = content.substring(0, 5);      // let keyword = content.substring(0, 5);
@@ -238,9 +229,7 @@ readFile('./sample.txt')
     })
 
     //而在promise里面处理异常的方法是在这个调用链的最后加一个.catch子句
-    .catch(e => {
-        console.log(e.message);
-    })
 
-// 我们可以和上一段的同步代码做一个对比，
-// 可以发现他们是一一对应的。
+    .catch(e => {                                   // } catch(e) {
+        console.log(e.message);                     //   console.log(e.message);
+    })                                              // }
